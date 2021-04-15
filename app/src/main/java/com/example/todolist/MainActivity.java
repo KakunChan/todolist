@@ -12,15 +12,13 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     TextView tv_date_today;
-    TextView tv_date_tom;
-    TextView tv_date_yes;
+    TextView tv_month_today;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv_date_today = findViewById(R.id.tv_date_today);
-        tv_date_tom = findViewById(R.id.tv_date_tom);
-        tv_date_yes = findViewById(R.id.tv_date_yes);
+        tv_month_today = findViewById(R.id.tv_month_today);
         new TimeThread().start();
 
     }
@@ -45,9 +43,8 @@ public class MainActivity extends AppCompatActivity {
         public boolean handleMessage(Message msg) {
             switch (msg.what){
                 case 1:
-                    tv_date_today.setText(new SimpleDateFormat("MM月dd日").format(new Date(System.currentTimeMillis()  )));
-                    tv_date_tom.setText(new SimpleDateFormat("MM月dd日").format(new Date(System.currentTimeMillis() +86400*1000 )));
-                    tv_date_yes.setText(new SimpleDateFormat("MM月dd日").format(new Date(System.currentTimeMillis() - 86400*1000  )));
+                    tv_date_today.setText(new SimpleDateFormat("dd").format(new Date(System.currentTimeMillis()  )));
+                    tv_month_today.setText(new SimpleDateFormat("MM月").format(new Date(System.currentTimeMillis()  )));
                     break;
             }
             return false;
